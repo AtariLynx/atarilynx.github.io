@@ -4,3 +4,8 @@
 
 layout: home
 ---
+* Placeholder
+{:toc}
+
+# Chapter 1
+Hello, World!

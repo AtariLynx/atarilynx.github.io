@@ -9,3 +9,9 @@ layout: home
 
 # Chapter 1
 Hello, World!
+
+## Section 1
+This is cool stuff
+
+## Section 2
+Even more chilly goodness

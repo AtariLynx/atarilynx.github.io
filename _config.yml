@@ -39,9 +39,9 @@ plugins:
 syntax_highlighter_style: colorful
 
 toc:
-    enabled: true
-    h_min: 1
-    h_max: 3
+  enabled: true
+  h_min: 1
+  h_max: 3
 
 collections:
   pages:
@@ -49,8 +49,8 @@ collections:
     permalink: /:collection/:path/
 
 ordered_collections:
-  - posts
   - pages
+  - posts
 
 readme_index:
   enabled:          true

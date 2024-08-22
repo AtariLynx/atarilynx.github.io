@@ -1,6 +1,7 @@
 ---
 title: Math in Lynx
 abstract: Math capabilities of the Atari Lynx explained.
+usemathjax: true
 ---
 # Math capabilities in Mikey
 The Atari Lynx has Mikey, a customized 65SC02 (65C02 in Lynx II) processor. The 6502, 65C02 and 65SC02 processors can perform simple math in the form of single byte add and subtract operations. How you interpret the individual bits in a byte allows you to see this as either signed or unsigned numbers representations. 
@@ -43,6 +44,7 @@ Suzy can perform both signed and unsigned multiplications of integer numbers. Si
 If your numbers have a possibility to be negative, you must choose signed multiplications. If not, your choice doesn't really matter except for one difference between signed and unsigned numbers: the range of values is not the same. 
 
 The table shows the various minimum and maximum values of single byte (8-bit), double byte (16-bit) and quad byte (32-bit) numbers. These are number types that exist in higher level languages, such as C in cc65 or newcc65.
+
 |#bits|#bytes|Signed|Min|Max|Min|Max|
 |:---|:---|:---|:---|:---|:---|:---|
 |8-bit|1|No|`0`|`255`|`$00`|`$FF`|
@@ -54,7 +56,8 @@ The table shows the various minimum and maximum values of single byte (8-bit), d
 
 For the 6502 processor and Suzy chip in particular negative numbers in signed math use "twos complement" for 8-bit numbers in the CPU and 16-bit and 32-bit numbers in the math engine of Suzy.
 
-The main distinction between signed and unsigned math is the meaning of a certain binary value as integer number. To illustrate this, have a look at the next table. 
+The main distinction between signed and unsigned math is the meaning of a certain binary value as integer number. To illustrate this, have a look at the next table.
+
 |Value (hex)|Value (bin)|Signed byte|Unsigned byte|
 |---|---|---|---|
 |`$00`|`b00000000`|`0`|`0`|
@@ -73,8 +76,10 @@ Suzy allows you to calculate the product by specifying the multiplicand and mult
 $AB \times CD => EFGH$
 
 > Multiplications and divisions for the Lynx are best understood by using the hexadecimal representation of numbers, as this aligns best with the addresses and registers of Suzy. We will use hexadecimal numbers from here on in.
+{: .block-tip }
 
 Some examples of unsigned multiplications in Suzy with the values in the math registers:
+
 | Multiplicand | `A` | `B` | Multiplier | `C` | `D` | Product | `E` | `F` | `G` | `H` |
 |:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
 |`$1234`|`$12`|`$34`|`$5678`|`$56`|`$78`|`$06260060`|`$06`|`$26`|`$00`|`$60`|
@@ -94,6 +99,7 @@ You read the product of the multiplication from most significant byte (MSB) in `
 
 Normal unsigned multiplications take 44 ticks to complete. You need to wait this time before reading the result from `EFGH` or you will have an intermediate (and often incorrect) result. Suzy offers a `MATHWORKING` flag of value 0x80 in `SPRSYS` that indicates whether a math operation is in progress. When the `MATHWORKING` flag is set, an operation is still ongoing and you shouldn't read from or write to the math registers. 
 You can check whether the math operation is finished with a few CPU instructions:
+
 ```asm
 notready:
   bit SPRSYS
@@ -117,6 +123,7 @@ You can calculate the hexadecimal notation for a negative number by following th
 As an example, the negative number `-4660` in decimal (`-$1234` in hexadecimal) translates to a positive value of `4660` or `$1234`. Using the three steps outlined above, this turns into `$1234 ^ $FFFF + $1` = `$EDCB + $1` = `$EDCC` as a signed 'twos complement' hexadecimal value for `-4660`.
 
 Here are some additional examples for 16-bit by 16-bit to 32-bit multiplications in hexadecimal notation:
+
 ```
 -$1234 * $5678 = $EDCC * $5678 = $F9D9FFA0 (signed) = -$6260060 = -103.153.760d
 -$1234 * -$5678 = $EDCC * $A988 = $ (signed) = -$6260060 = -103.153.760d
@@ -137,7 +144,7 @@ Due to a hardware bug in Suzy the value of `$0000` is regarded as a negative num
 
 ## Divisions
 
-$\frac{dividend}{divisor} = quotient + remainder$
+$ \frac{dividend}{divisor} = quotient + remainder $
 
 $$\frac{EFGH}{NP} = ABCD + LM$$
 

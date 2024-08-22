@@ -66,13 +66,4 @@
   {%- endfor -%}
 {% endif %}
 
-<script>
-  MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']]
-    },
-    svg: {
-      fontCache: 'global'
-    }
-  };
-</script>
+{% include mathjax.html %}

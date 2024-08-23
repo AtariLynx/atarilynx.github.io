@@ -68,7 +68,7 @@ The main distinction between signed and unsigned math is the meaning of a certai
 
 You can see that the number for a hex value (or its binary representation) differs as soon as the most significant bit is set. You need to take this into account when performing working with the variables and math operations. This becomes relevant when choosing your variable types in C. We will get back to that later.
 
-### Unsigned multiplications
+## Unsigned multiplications
 Let's look at unsigned multiplications first. Suzy uses the registers `A` and `B` for the 16-bit multiplicand, `C` and `D` for the 16-bit multiplier and `E`, `F`, `G` and `H` for a 32-bit resultant product. 
 
 Suzy allows you to calculate the product by specifying the multiplicand and multiplier. You specify each by writing to the `AB` and `CD` pairs of bytes and read the resulting product from `EFGH`:

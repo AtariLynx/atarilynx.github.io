@@ -48,13 +48,13 @@ To send something you first put a byte in the holding register. The hardware tra
 
 The receiving of data is slightly different. The 11 incoming bits are received and the single byte of payload data between the start, parity and stop are stored in a receive holding register. Data will keep coming in from the external source at the baud rate. It is your task to read the data inside the register before it is overwritten by the next byte of data received. If you do not read in time, the Lynx will report a register overrun error.
 
-# Serial interrupts
+## Serial interrupts
 
 The UART send and receive mechanism uses timer 4 as its clock to generate the bit rate. In addition it can trigger interrupts (IRQ) when actually sending or transmitting. Indirectly the interrupts are a way of notifying you of a newly received byte or an empty holding register. In the interrupt handler you can check flags (TXRDY and RXRDY as we’ll see in a moment) to see whether a new byte is ready for sending or when a byte has been received. If so, you should put a new byte in the holding register to keep the outbound dataflow going and you should read received bytes quick enough before the next one arrives. Should you be slow to put in a new byte to transmit, you’re wasting time sending all data. If you are too late to pick up a byte from the receive holding register, you will get an overrun because the receiver cannot place the new byte and you lose the data. 
 
 It’s your choice whether you want to use interrupts for sending and receiving or not. Using interrupts you can continue doing other stuff, so this is a reasonable option when you are performing other tasks (such as gameplay) and want to send and receive data in the meantime during interrupt handling. Interrupts will help you do these tasks just in time with dedicated handlers. On the other hand, should you have a dedicated part of your program or game that does send or receive only, you can use the send and receive flags to check whether you should use read or write data. In such cases it offers no benefit to have the overhead of IRQ handling routines
 
-# Baud rate and serial timer
+## Baud rate and serial timer
 The Lynx has various hardware registers inside Mikey that have a memory address so you can change settings for the UART hardware and help send and receive data.
 
 First of all, the UART uses the serial timer, which is timer 4, to serve as the baud rate generator. So, by setting the time of each timer tick and the countdown period you can indirectly specify the baud rate. The baud rate is calculated by determining the time it takes to send 8 bits when timer 4 has a particular speed. The baud rate calculation is as follows:
@@ -72,9 +72,9 @@ Some examples of baud rate calculations:
 |12  | 1 µs   | 1 MHz  | 1000000/((12+1)·8) = 9615 Bps  |
 |51   | 8 µs  | 125 kHz  | 125000/((51+1)·8) = 300 Bps  |
 
-# UART hardware registers
+## Mikey UART hardware registers
 
-The most important two memory locations in the Lynx are `SERCTL (address 0xFD8C)` and `SERDAT (address 0xFD8D)`. The first, `SERCTL`, refers to the serial control register and allows you to change UART settings. `SERDAT` is where you will read or write the serial data being received or sent.
+The most important two memory locations in Mikey are `SERCTL (address 0xFD8C)` and `SERDAT (address 0xFD8D)`. The first, `SERCTL`, refers to the serial control register and allows you to change UART settings. `SERDAT` is where you will read or write the serial data being received or sent.
 
 `SERCTL` turns out to be a weird register. The behavior is totally different when writing to or reading from it. In other words, when you write a specific value, and then read it, you will probably get a different value from the one you wrote.
 
@@ -91,7 +91,7 @@ The most important two memory locations in the Lynx are `SERCTL (address 0xFD8C)
 
 There are several other registers in the Lynx that behave this way. If you want to refer to the value written to `SERCTL` you need to maintain a 'shadow register' in memory yourself. Every time a value is written to `SERCTL`, the same value must be written to the shadow register as well. Reading back your previously written value is possible by evaluating the shadow register, not the `SERCTL` register itself, as this gives different values.
 
-# Inside UART transmitter
+## Inside UART transmitter of Lynx
 
 A deeper look at the way the data is being transmitted will explain how the byte travels through the UART transmitter. It is important to realize that the `TXRDY` bit refers to the holding register, while the `TXEMPTY` bit represents both empty state of the holding and the shift register.
 

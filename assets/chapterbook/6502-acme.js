@@ -1,10 +1,9 @@
 // ACME Assembler 6502
 
-window.alert("hoi");
 hljs.registerLanguage(
     "6502",
     (() => {
-      "use strict";
+      "use strict"; 
       return (r) => ({
         name: "6502",
         case_insensitive: true,

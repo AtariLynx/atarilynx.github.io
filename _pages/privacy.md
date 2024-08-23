@@ -7,7 +7,7 @@ layout: page
 Example privacy page.
 
 
-```c#
+``` csharp
 public class Test {
 
 }
@@ -19,10 +19,14 @@ jump:
     bne jump
 ```
 
-{% highlight 6502 linenos %}
+{% highlight csharp linenos %}
 jump:
     bit $1235
     bne jump
+
+public class Test {
+
+}
 {% endhighlight %}
 
 ---

@@ -1,6 +1,6 @@
 remote_theme: jasongrimes/jekyll-chapterbook
 
-title: Programming Atari Lynx
+title: Lynx Programming
 longtitle: Programming for the Atari Lynx
 author: Alex Thissen
 email: athissen@killer-apps.nl
@@ -26,9 +26,7 @@ copyright:
 # Customize the link favicon in header. Will be {{site.baseurl}}/{{site.favicon_path}}
 favicon_path: assets/gitbook/images/favicon.ico
 
-#
 # Navigation menus
-#
 
 # Breadcrumbs for book contents.
 # The book and contents pages need to be made manually.
@@ -131,8 +129,9 @@ kramdown:
   math_engine:            mathjax
   smart_quotes:           lsquo,rsquo,ldquo,rdquo
   toc_levels:             1..6
-  syntax_highlighter:     rouge
+  syntax_highlighter:     
   syntax_highlighter_opts:
-    guess_lang:           true
+    guess_lang:           false
+    css_class:            highlight
 syntax_highlighter_style: colorful
 markdown_ext:     markdown,mkdown,mkdn,mkd,md

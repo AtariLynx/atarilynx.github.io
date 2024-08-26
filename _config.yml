@@ -47,8 +47,8 @@ sidebar_nav_top:
 sidebar_nav_bottom:
 - label: Draft outline
   url: /outline.html
-- label: Fork at GitHub
-  url: https://github.com/atarilynx/atarilynx.github.io/fork
+- label: Source code
+  url: https://github.com/atarilynx/programmingtutorial
 
 # Navigation shown at the bottom of the page
 # All "url" variables should have a leading slash.
@@ -57,7 +57,7 @@ bottom_nav:
   url: /index.html
 - label: Book
   url: /book.html
-- label: GitHub
+- label: Source code
   url: https://github.com/atarilynx/programmingtutorial
 - label: Privacy
   url: /privacy.html

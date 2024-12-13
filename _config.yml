@@ -9,7 +9,7 @@ github_username:  alexthissen
 description: >
   A Jekyll theme based on GitBook with support for chapters and parts.
 
-# If baseurl_canonical is set, 
+# If baseurl_canonical is set,
 # a <link rel="canonical"> tag will be added to the head of each page,
 # to disambiguate links for search engines.
 baseurl_canonical: https://atarilynx.github.io/programming-atari-lynx
@@ -67,14 +67,14 @@ bottom_nav:
 # Override in page front matter with disable_toc: true
 in_chapter_toc:
   enabled: true
-  h_min: 1
+  h_min: 2
   h_max: 2
 
 # Whether to show chapter heading sub-navigation beneath the active chapter in the sidebar.
 # Override in page front matter with disable_toc: true
 sidebar_toc:
   enabled: false
-  h_min: 1
+  h_min: 2
   h_max: 2
 
 # Show a link to edit each page on GitHub
@@ -129,7 +129,7 @@ kramdown:
   math_engine:            mathjax
   smart_quotes:           lsquo,rsquo,ldquo,rdquo
   toc_levels:             1..6
-  syntax_highlighter:     
+  syntax_highlighter:
   syntax_highlighter_opts:
     guess_lang:           false
     css_class:            highlight

@@ -1,6 +1,6 @@
 // ACME Assembler 6502
 
-hljs.registerLanguage(
+  hljs.registerLanguage(
     "6502",
     (() => {
       "use strict"; 

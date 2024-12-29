@@ -1,0 +1,53 @@
+---
+title: Upload suport using BLL
+abstract: Use BLL to add uploader functionality to your program.
+---
+
+BLL has uploader support as part of the debugging capabilities. You can include the uploader using `new_bll` with the following actions:
+
+- Set `DEBUG` to any value.
+- Include required macros, variables and implementation for debugging, IRQ and serial support.
+- Make a call to `InitComLynx`, which will include the uploader if `DEBUG` is set (as in first action).
+
+Your BLL code for lyxass will look similar to this:
+
+```6502
+DEBUG set 1
+Baudrate set 62500
+
+; Other initialization
+
+; Macros for debugging and IRQ
+include <macros/debug.mac>
+include <macros/irq.mac>
+
+; Variables for debugging, IRQ and serial support
+include <vardefs/debug.var>
+include <vardefs/irq.var>
+include <vardefs/serial.var>
+
+; Your initialization code
+
+INITIRQ irq_vectors
+jsr InitComLynx     ; Located in serial.inc
+
+; Rest of your logic
+
+; Implementation of IRQ, debugging and serial support included last
+include <includes/irq.inc>
+include <includes/debug.inc>
+include <includes/serial.inc>
+```
+
+The inclusion of `serial.inc` sets a value `SERIAL` to `1` as an indication that serial support is available. The `debug.inc` code will evaluate this value to add some additional features for debugging, 
+
+
+```6502
+InitComLynx::
+****************
+    php
+    sei
+IFD DEBUG
+    jsr InstallLoader
+ENDIF
+```

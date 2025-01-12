@@ -26,7 +26,10 @@
 			"extensions": [
 				"DavidAnson.vscode-markdownlint",
 				"hediet.vscode-drawio"
-			]
+			],
+			"settings": {
+				"files.trimTrailingWhitespace": false
+			}
 		}
 	},
 

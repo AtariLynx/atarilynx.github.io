@@ -4,6 +4,7 @@
 
 layout: home
 ---
-Welcome to "Programming for the Atari Lynx hand-held console"
+
+# Welcome to "Programming for the Atari Lynx hand-held console"
 
 So, you want to develop a game or program for the Atari Lynx, right? Well, join me on my journey to learn how to program for this game console.

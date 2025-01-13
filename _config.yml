@@ -39,7 +39,7 @@ bookcrumbs:
 # Links shown above the TOC in the sidebar
 # All "url" variables should have a leading slash.
 sidebar_nav_top:
-- label: Programming the Atari Lynx Index
+- label: Chapter Index
   url: /index.html
 
 # Links shown below the TOC in the sidebar
@@ -79,8 +79,8 @@ sidebar_toc:
 
 # Show a link to edit each page on GitHub
 github_edit:
-  enabled: true
-  base_url: https://github.com/jasongrimes/jekyll-chapterbook/edit/master/
+  enabled: false
+  base_url: https://github.com/atarilynx/atarilynx.github.io/edit/main/
 
 # Custom CSS
 extra_css:

@@ -97,7 +97,10 @@ layout: default
       {{ page.abstract }}
     </div>
   {% endif %}
-
+  {% assign word_count = content | number_of_words %}
+  <div class="word-count">
+    Word count: {{ word_count }}
+  </div>
   {% if site.in_chapter_toc.enabled and page.disable_toc != true and page_chapter_is_part_index != true %}
     {% capture in_chapter_toc %}
       {% include toc.html html=content h_min=site.sidebar_toc.h_min h_max=site.sidebar_toc.h_max %}{% endcapture %}
